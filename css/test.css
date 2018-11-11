@@ -1,0 +1,11 @@
+:root {
+  button {
+    background: green;
+  }
+}
+
+:local {
+    .test {
+        background: red;
+    }
+}
