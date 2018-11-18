@@ -7,12 +7,18 @@ import Header from '../header';
 import Footer from '../footer';
 import Sidebar from '../sidebar';
 
+import classnames from 'classnames/bind';
+import style from './style.css';
+
+const cn = classnames.bind(style);
+
 const Layout = (props) => (
     <Fragment>
         <Head/>
         <Grid
             container
             spacing={16}
+            className={cn('layout__container')}
         >
             <Grid item xs={12}>
                 <Header/>

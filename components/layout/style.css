@@ -1,0 +1,8 @@
+:local {
+  .layout {
+
+    &__container {
+      background: url("./img/orig.jpg") repeat center top;
+    }
+  }
+}
