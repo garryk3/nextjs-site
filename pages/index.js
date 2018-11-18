@@ -1,30 +1,16 @@
-import react from 'react';
+import React from 'react';
 import Link from 'next/link'
 
+import Layout from '../components/layout';
+
 export default () => (
-    <div>
-        Hello world
-        <Link href="/test">
-            <a>here</a>
-        </Link>{' '}
-        <p>scoped!</p>
-        <style jsx>{`
-      p {
-        color: blue;
-      }
-      div {
-        background: red;
-      }
-      @media (max-width: 600px) {
-        div {
-          background: blue;
-        }
-      }
-    `}</style>
-        <style global jsx>{`
-      body {
-        background: black;
-      }
-    `}</style>
-    </div>
+    <Layout>
+        <div>
+            Hello world
+            <Link href="/test">
+                <a>here</a>
+            </Link>{' '}
+            <p>scoped!</p>
+        </div>
+    </Layout>
 )

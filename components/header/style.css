@@ -1,0 +1,8 @@
+:local {
+  .header {
+
+    &__content-right {
+      margin-left: auto;
+    }
+  }
+}
