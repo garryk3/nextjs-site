@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid';
 
 import Head from '../head';
 import Header from '../header';
+import Footer from '../footer';
 import Sidebar from '../sidebar';
 
 const Layout = (props) => (
@@ -11,9 +12,6 @@ const Layout = (props) => (
         <Head/>
         <Grid
             container
-            direction="row"
-            justify="center"
-            alignItems="center"
             spacing={16}
         >
             <Grid item xs={12}>
@@ -23,6 +21,9 @@ const Layout = (props) => (
                 <Sidebar/>
             </Grid>
             <Grid item xs={9}>{props.children}</Grid>
+            <Grid item xs={12}>
+                <Footer/>
+            </Grid>
         </Grid>
     </Fragment>
 );

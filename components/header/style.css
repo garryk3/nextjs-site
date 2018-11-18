@@ -4,5 +4,15 @@
     &__content-right {
       margin-left: auto;
     }
+
+    &__link {
+      margin-right: 24px;
+      cursor: pointer;
+      transition: color 0.2s;
+
+      &:hover {
+        color: rgba(255, 255, 255, 0.7);
+      }
+    }
   }
 }
