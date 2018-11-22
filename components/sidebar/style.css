@@ -1,0 +1,8 @@
+:local {
+  .sidebar {
+
+    &__heading {
+      margin: 0 0 12px;
+    }
+  }
+}
