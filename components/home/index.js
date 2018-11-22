@@ -13,7 +13,7 @@ const cn = classnames.bind(style);
 
 const Home = () => (
     <Layout>
-        <Grid container>
+        <Grid container spacing={16}>
             <Grid item xs={8}>
                 <Typography variant="h4" gutterBottom>Heading</Typography>
                 <Typography variant="body1" paragraph>

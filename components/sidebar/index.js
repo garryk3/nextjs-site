@@ -9,21 +9,21 @@ import style from './style.css';
 
 const cn = classnames.bind(style);
 
-const Sidebar = () => (
-    <Fragment>
-        <div className={cn('sidebar__heading')}>
-            <Typography variant="h5">
-                Последние публикации
-            </Typography>
-        </div>
-        <Card/>
-        <Card/>
-        <Card/>
-        <Card/>
-        <Card/>
-        <Card/>
-        <Card/>
-    </Fragment>
-);
+const Sidebar = () => {
+    const renderLatest = [
+        {}, {}, {}, {}, {}
+    ];
+
+    return (
+        <Fragment>
+            <div className={cn('sidebar__heading')}>
+                <Typography variant="h5">
+                    Последние публикации
+                </Typography>
+            </div>
+            {renderLatest.map((item, index) => <Card key={`article-${index}`} />)}
+        </Fragment>
+    )
+};
 
 export default Sidebar;

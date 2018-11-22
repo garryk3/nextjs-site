@@ -1,0 +1,12 @@
+:local {
+  .content-list {
+
+    &__sidebar {
+      padding-top: 8px;
+    }
+
+    &__image {
+      width: 100%;
+    }
+  }
+}

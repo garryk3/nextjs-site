@@ -15,13 +15,13 @@ const cn = classnames.bind(style);
 const Header = () => {
     const menu = [{
         title: 'Статьи',
-        href: '/link1'
+        href: '/articles'
     }, {
         title: 'Проекты',
-        href: '/link1'
+        href: '/projects'
     }, {
         title: 'Галерея',
-        href: '/link1'
+        href: '/galleries'
     }];
 
     return (
@@ -32,8 +32,8 @@ const Header = () => {
                         <MenuIcon />
                     </IconButton>
                 </Link>
-                {menu.map((item) => (
-                    <Link href={item.href}>
+                {menu.map((item, index) => (
+                    <Link href={item.href} key={`menu-${index}`}>
                         <div className={cn('header__link')}>
                             <Typography variant="h6" color="inherit">
                                 {item.title}
