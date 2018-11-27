@@ -3,21 +3,24 @@ import Firebase, { FirebaseContext } from '../components/firebase';
 
 
 export default class MyDocument extends Document {
+
     static async getInitialProps(ctx) {
         const initialProps = await Document.getInitialProps(ctx);
-        return { ...initialProps }
+        const dbData = await new Firebase().readDatabaseRefOnce('/title');
+
+        return { ...initialProps, dbData }
     }
 
-    render() {
-        const firebaseInstance = new Firebase();
-        console.log('--====!', firebaseInstance)
 
+
+    render() {
+        console.log('this', this.props.dbData)
         return (
             <html>
                 <Head />
                 <body>
                     <Main />
-                    <FirebaseContext.Provider value={firebaseInstance}>
+                    <FirebaseContext.Provider value={this.props.dbData}>
                         <NextScript />
                     </FirebaseContext.Provider>
                 </body>

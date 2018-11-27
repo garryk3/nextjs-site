@@ -18,6 +18,7 @@ const Layout = (props) => (
         <Head/>
         <FirebaseContext.Consumer>
             {(firebase) => {
+                console.log('firebase', firebase)
                 return (
                     <Grid
                         container

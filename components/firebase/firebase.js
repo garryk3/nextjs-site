@@ -3,16 +3,34 @@ import config from '../../config/config';
 
 class Firebase {
     constructor() {
+        this.app = null;
+
         if(!firebase.apps.length) {
-            console.log('init', firebase.apps.length)
-            firebase.initializeApp(config.firebase)
+            this.app = firebase.initializeApp(config.firebase)
         } else {
-            console.log('no init', firebase.apps)
+            this.app = firebase.app();
         }
+
+        this.database = this.app && this.app.database();
     }
 
-    get app() {
-        return firebase.app()
+    async readDatabaseRefOnce(name) {
+        if(name) {
+            try {
+                let data = await this.database.ref(name).once('value');
+                let value = data.val();
+
+                if(value) {
+                    return value;
+                } else {
+                    console.log(`db value of key ${name} is ${value}`)
+                }
+            } catch (e) {
+                console.error(e);
+            }
+        } else {
+            console.warn(`can't read value of ${name}`);
+        }
     }
 }
 
