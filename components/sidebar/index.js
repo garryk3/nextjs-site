@@ -33,7 +33,16 @@ class Sidebar extends PureComponent {
                         Последние публикации
                     </Typography>
                 </div>
-                {this.renderLatest.map((article, index) => <Card key={`article-${index}`} content={article} />)}
+                {this.renderLatest.map((article, index) => (
+                    <Card
+                        key={`latest-${index}`}
+                        image='https://via.placeholder.com/728x600'
+                        title={article.name}
+                        heading={article.name}
+                        description={article.body}
+                        href='/'
+                    />
+                ))}
             </Fragment>
         )
     }

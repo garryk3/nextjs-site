@@ -1,5 +1,11 @@
 :local {
+
   .card {
     margin-bottom: 12px;
+
+    &__img {
+       height: 210px;
+     }
   }
+
 }

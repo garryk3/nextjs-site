@@ -11,17 +11,23 @@ export default class MyApp extends App {
             pageProps = await Component.getInitialProps(ctx)
         }
         const dbData = await new Firebase().readDatabaseRefOnce('/content');
+        const { articles, galleries, projects } = dbData;
+        const initialState = {
+            articles,
+            galleries,
+            projects
+        };
 
-        return { pageProps, dbData }
+        return { pageProps, initialState }
     }
 
     render () {
-        const { Component, pageProps, dbData } = this.props;
+        const { Component, pageProps, initialState } = this.props;
 
         return (
             <Container>
-                <FirebaseContext.Provider value={dbData}>
-                    <Component {...pageProps} />
+                <FirebaseContext.Provider value={initialState}>
+                    <Component {...pageProps} initialState={initialState} />
                 </FirebaseContext.Provider>
             </Container>
         )
