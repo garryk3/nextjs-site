@@ -1,4 +1,5 @@
 import React, { Fragment, PureComponent } from 'react';
+import PropTypes from "prop-types";
 
 import Typography from '@material-ui/core/Typography';
 
@@ -12,6 +13,10 @@ class Galleries extends PureComponent {
 
         this.renderContent = this.getAllGalleries();
     }
+
+    static propTypes = {
+        initialState: PropTypes.object
+    };
 
     getAllGalleries = () => {
         const articles = this.props.initialState && this.props.initialState.galleries;

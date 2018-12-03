@@ -5,7 +5,7 @@ import Firebase, { FirebaseContext } from '../components/firebase';
 
 export default class MyApp extends App {
     static async getInitialProps({ Component, router, ctx }) {
-        let pageProps = {}
+        let pageProps = {};
 
         if (Component.getInitialProps) {
             pageProps = await Component.getInitialProps(ctx)

@@ -1,0 +1,10 @@
+:local {
+
+    .admin {
+
+        &__container {
+            padding-top: 64px;
+        }
+
+    }
+}
