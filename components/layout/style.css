@@ -5,5 +5,9 @@
       padding-top: 64px;
       background: url("./img/orig.jpg") repeat center top;
     }
+
+    &__footer {
+      margin-top: auto;
+    }
   }
 }

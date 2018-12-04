@@ -27,7 +27,7 @@ const Layout = (props) => (
                 <Sidebar />
             </Grid>
             <Grid item xs={9}>{props.children}</Grid>
-            <Grid item xs={12}>
+            <Grid item xs={12} className={cn('layout__footer')}>
                 <Footer/>
             </Grid>
         </Grid>

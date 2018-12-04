@@ -23,7 +23,7 @@ class AdminResourse extends PureComponent {
     }
 
     static propTypes = {
-        initialState: PropTypes.object
+        content: PropTypes.object
     };
 
     render() {
@@ -38,13 +38,15 @@ class AdminResourse extends PureComponent {
                     <Grid item xs={12}>
                         <Header/>
                     </Grid>
-                    <Grid item xs={3}>
-                        <AdminSidebar content={this.props.initialState} />
+                    <Grid container className={cn('admin__container-inner')}>
+                        <Grid item xs={3}>
+                            <AdminSidebar content={this.props.content} />
+                        </Grid>
+                        <Grid item xs={9}>
+                            <AdminMain />
+                        </Grid>
                     </Grid>
-                    <Grid item xs={9}>
-                        <AdminMain />
-                    </Grid>
-                    <Grid item xs={12}>
+                    <Grid item xs={12} className={cn('admin__footer')}>
                         <Footer/>
                     </Grid>
                 </Grid>

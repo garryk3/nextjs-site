@@ -3,8 +3,40 @@
     .admin {
 
         &__container {
+            align-content: space-between;
+            min-height: 100vh;
             padding-top: 64px;
         }
 
+        &__container-inner {
+            padding: 0 8px;
+            min-height: calc(100vh - 160px);
+        }
+
+        &__footer {
+            margin-top: auto;
+        }
+    }
+
+    .admin-sidebar {
+
+        &__list {
+            margin: 0;
+            padding: 0;
+        }
+
+        &__list-item {
+            position:relative;
+            list-style-type: none;
+        }
+
+        &__list-icon {
+            position: absolute;
+            left: 4px;
+
+            &:hover {
+                fill: #c31414;
+            }
+        }
     }
 }

@@ -12,7 +12,7 @@ const cn = classnames.bind(style);
 
 const Footer = () => {
     return (
-        <AppBar position="static">
+        <AppBar position="static" className={cn('footer')}>
             <Toolbar>
                 <Link href="https://github.com/garryk3">
                     <a className={cn('footer__copyright')} target="_blank">
