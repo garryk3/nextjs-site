@@ -14,22 +14,18 @@ class Firebase {
         this.database = this.app && this.app.database();
     }
 
-    async readDatabaseRefOnce(name) {
-        if(name) {
-            try {
-                let data = await this.database.ref(name).once('value');
-                let value = data.val();
+    async readDatabaseRefOnce() {
+        try {
+            let data = await this.database.ref('/content').once('value');
+            let value = data.val();
 
-                if(value) {
-                    return value;
-                } else {
-                    console.log(`db value of key ${name} is ${value}`)
-                }
-            } catch (e) {
-                console.error(e);
+            if(value) {
+                return value;
+            } else {
+                console.log(`db value of key ${name} is ${value}`)
             }
-        } else {
-            console.warn(`can't read value of ${name}`);
+        } catch (e) {
+            console.error(e);
         }
     }
 }

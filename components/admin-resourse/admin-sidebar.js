@@ -71,18 +71,6 @@ class AdminSidebar extends PureComponent {
         }
     };
 
-    onClickDeleteIcon = (e) => {
-        e.stopPropagation();
-
-        if(this.props.articleHandler) {
-            const parent = e.currentTarget.closest(`.${cn('admin-sidebar__list-item')}`);
-            const type = parent.dataset.type;
-            const id = parent.dataset.id;
-
-            this.props.articleHandler({ id, type })
-        }
-    };
-
     render() {
         return (
             <Fragment>

@@ -19,6 +19,7 @@ import Header from "../header";
 import AdminSidebar from "./admin-sidebar";
 import AdminMain from "./admin-main";
 import Footer from "../footer";
+import { FirebaseContext } from '../firebase';
 
 const cn = classnames.bind(style);
 
@@ -34,10 +35,12 @@ class AdminResourse extends PureComponent {
         content: PropTypes.object
     };
 
+    static contextType = FirebaseContext;
+
     state = {
         article: null,
         sidebarContent: this.props.content,
-        modalOpen     : false
+        modalOpen: false
     };
 
     onClickCloseModal = (e) => {

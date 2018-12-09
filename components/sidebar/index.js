@@ -16,7 +16,7 @@ class Sidebar extends PureComponent {
     static contextType = FirebaseContext;
 
     get renderLatest() {
-        const latest = this.context && this.context.articles;
+        const latest = this.context.initialState && this.context.initialState.articles;
 
         if(Array.isArray(latest)) {
             return latest.slice(0, 3);
