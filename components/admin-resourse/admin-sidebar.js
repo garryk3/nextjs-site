@@ -20,7 +20,8 @@ const cn = classnames.bind(style);
 class AdminSidebar extends PureComponent {
 
     static propTypes = {
-        content: PropTypes.object
+        content: PropTypes.object,
+        articleHandler: PropTypes.func
     };
 
     constructor(props) {
@@ -51,13 +52,35 @@ class AdminSidebar extends PureComponent {
     };
 
     onClickArticle = (e) => {
-        console.log('target', e.target)
+        e.stopPropagation();
+
+        if(this.props.articleHandler) {
+            const target = e.currentTarget;
+            const params = {
+                type: target.dataset.type,
+                id: target.dataset.id
+            };
+
+            if(e.target.classList.contains(`${cn('admin-sidebar__list-icon')}`) || e.target.closest(`.${cn('admin-sidebar__list-icon')}`)) {
+                params.action = 'delete';
+            } else {
+                params.action = 'edit';
+            }
+
+            this.props.articleHandler(params)
+        }
     };
 
     onClickDeleteIcon = (e) => {
         e.stopPropagation();
 
-        console.log('del target', e.target)
+        if(this.props.articleHandler) {
+            const parent = e.currentTarget.closest(`.${cn('admin-sidebar__list-item')}`);
+            const type = parent.dataset.type;
+            const id = parent.dataset.id;
+
+            this.props.articleHandler({ id, type })
+        }
     };
 
     render() {
@@ -74,17 +97,18 @@ class AdminSidebar extends PureComponent {
                                         </Typography>
                                     </ExpansionPanelSummary>
                                     <ExpansionPanelDetails>
-                                        <List component='ul' className={cn('admin-sidebar__list')} onClick={this.onClickArticle}>
-                                            {block[1].map((article, index) => (
+                                        <List component='ul' className={cn('admin-sidebar__list')}>
+                                            {block[1].map((article) => (
                                                 <Fragment key={article.id}>
                                                     <ListItem
                                                         button
                                                         className={cn('admin-sidebar__list-item')}
                                                         data-type={block[0]}
                                                         data-id={article.id}
-                                                        key={`${block[0]}-${index}`}
+                                                        key={article.id}
+                                                        onClick={this.onClickArticle}
                                                     >
-                                                        <DeleteIcon className={cn('admin-sidebar__list-icon')} onClick={this.onClickDeleteIcon} />
+                                                        <DeleteIcon className={cn('admin-sidebar__list-icon')} data-type='delete' />
                                                         <ListItemText primary={article.name} />
                                                     </ListItem>
                                                     <Divider />
