@@ -53,7 +53,7 @@ class AdminResourse extends PureComponent {
         this.setState({ modalOpen: false });
     };
 
-    editArticle = (params) => {
+    editArticle = async (params) => {
         if(params && params.action) {
             const targetIndex = this.state.sidebarContent[params.type] && this.state.sidebarContent[params.type].findIndex((item) => {
                 return parseInt(item.id, 10) === parseInt(params.id, 10);
@@ -71,11 +71,22 @@ class AdminResourse extends PureComponent {
                         break;
                     }
                     case 'edit': {
-
+                        await this.saveArticleToDB(params.type)
                     }
                 }
             }
         }
+    };
+
+    saveArticleToDB = (type, content) => {
+        const test = {
+                "postId": 1,
+                "id": 1,
+                "name": "id labore ex et quam laborum",
+                "email": "Eliseo@gardner.biz",
+                "body": "laudantium enim quasi est quidem magnam voluptate ipsam eos\ntempora quo necessitatibus\ndolor quam autem quasi\nreiciendis et nam sapiente accusantium"
+            };
+        return this.context.firebase.writeContentToDB(`/${type}`, test)
     };
 
     deleteArticle = () => {
