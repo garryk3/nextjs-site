@@ -46,6 +46,18 @@ class Firebase {
             console.error(e);
         }
     }
+
+    removeContentFromDB(type, key) {
+        try {
+            if(type && key) {
+                this.database.ref(type).child(type + key).remove()
+            } else {
+                console.warn(`cant find data, key is ${key}, type is ${type}`)
+            }
+        } catch(e) {
+            console.error(e);
+        }
+    }
 }
 
 export default Firebase;

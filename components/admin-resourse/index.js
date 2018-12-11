@@ -61,7 +61,8 @@ class AdminResourse extends PureComponent {
             const sidebarContent = this.state.sidebarContent[params.type];
             this.editArticleData = {
               index: targetIndex,
-              type: params.type
+              type: params.type,
+              key: params.key
             };
 
             if(sidebarContent) {
@@ -92,8 +93,7 @@ class AdminResourse extends PureComponent {
     deleteArticle = () => {
         const type = this.editArticleData.type;
         const index = this.editArticleData.index;
-
-        console.log('index', this.state.sidebarContent[type], index)
+        const key = this.editArticleData.key;
 
         if(type && index >= 0) {
             const content = this.state.sidebarContent[type];
@@ -105,6 +105,8 @@ class AdminResourse extends PureComponent {
                     [type]: content
                 }
             });
+
+            this.context.firebase.removeContentFromDB(`/${type}`, key)
         }
     };
 
