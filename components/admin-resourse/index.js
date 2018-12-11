@@ -56,7 +56,7 @@ class AdminResourse extends PureComponent {
     editArticle = async (params) => {
         if(params && params.action) {
             const targetIndex = this.state.sidebarContent[params.type] && this.state.sidebarContent[params.type].findIndex((item) => {
-                return parseInt(item.id, 10) === parseInt(params.id, 10);
+                return item.key === params.key;
             });
             const sidebarContent = this.state.sidebarContent[params.type];
             this.editArticleData = {
@@ -92,6 +92,8 @@ class AdminResourse extends PureComponent {
     deleteArticle = () => {
         const type = this.editArticleData.type;
         const index = this.editArticleData.index;
+
+        console.log('index', this.state.sidebarContent[type], index)
 
         if(type && index >= 0) {
             const content = this.state.sidebarContent[type];

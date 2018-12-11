@@ -58,7 +58,7 @@ class AdminSidebar extends PureComponent {
             const target = e.currentTarget;
             const params = {
                 type: target.dataset.type,
-                id: target.dataset.id
+                key: target.dataset.key
             };
 
             if(e.target.classList.contains(`${cn('admin-sidebar__list-icon')}`) || e.target.closest(`.${cn('admin-sidebar__list-icon')}`)) {
@@ -72,6 +72,7 @@ class AdminSidebar extends PureComponent {
     };
 
     render() {
+        console.log('content', this.content)
         return (
             <Fragment>
                 {Array.isArray(this.content) && this.content.length && this.content.map((block) => {
@@ -86,22 +87,29 @@ class AdminSidebar extends PureComponent {
                                     </ExpansionPanelSummary>
                                     <ExpansionPanelDetails>
                                         <List component='ul' className={cn('admin-sidebar__list')}>
-                                            {block[1].map((article) => (
-                                                <Fragment key={article.id}>
-                                                    <ListItem
-                                                        button
-                                                        className={cn('admin-sidebar__list-item')}
-                                                        data-type={block[0]}
-                                                        data-id={article.id}
-                                                        key={article.id}
-                                                        onClick={this.onClickArticle}
-                                                    >
-                                                        <DeleteIcon className={cn('admin-sidebar__list-icon')} data-type='delete' />
-                                                        <ListItemText primary={article.name} />
-                                                    </ListItem>
-                                                    <Divider />
-                                                </Fragment>
-                                            ))}
+                                            {block[1].map((article) => {
+                                                if(article.key) {
+                                                    return (
+                                                        <Fragment key={article.key}>
+                                                            <ListItem
+                                                                button
+                                                                className={cn('admin-sidebar__list-item')}
+                                                                data-type={block[0]}
+                                                                data-key={article.key}
+                                                                onClick={this.onClickArticle}
+                                                            >
+                                                                <DeleteIcon className={cn('admin-sidebar__list-icon')} data-type='delete' />
+                                                                <ListItemText primary={article.name} />
+                                                            </ListItem>
+                                                            <Divider />
+                                                        </Fragment>
+                                                    )
+                                                } else {
+                                                    console.log('cant find article key, value is ' + article.key);
+
+                                                    return null;
+                                                }
+                                            })}
                                         </List>
                                     </ExpansionPanelDetails>
                                 </ExpansionPanel>

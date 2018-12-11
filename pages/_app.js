@@ -15,9 +15,9 @@ export default class MyApp extends App {
         const dbData = await firebase.readDatabaseRefOnce();
         const { articles, galleries, projects } = dbData;
         const initialState = {
-            articles,
-            galleries,
-            projects
+            articles: articles && Object.values(articles),
+            galleries: galleries && Object.values(galleries),
+            projects: projects && Object.values(projects)
         };
 
         return { pageProps, initialState }

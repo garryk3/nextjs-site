@@ -18,13 +18,13 @@ class Firebase {
 
     async readDatabaseRefOnce() {
         try {
-            let data = await this.database.ref(contentRef).once('value');
+            let data = await this.database.ref().once('value');
             let value = data.val();
 
             if(value) {
                 return value;
             } else {
-                console.log(`db value of key ${name} is ${value}`)
+                console.log(`db value is ${value}`)
             }
         } catch (e) {
             console.error(e);
@@ -36,7 +36,10 @@ class Firebase {
             const newPostKey = this.database.ref().child(type).push().key;
             const updates = {};
 
-            updates[type + newPostKey] = content;
+            updates[type + newPostKey] = {
+                ...content,
+                key: newPostKey
+            };
 
             return this.database.ref(type).update(updates);
         } catch (e) {
