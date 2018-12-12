@@ -40,7 +40,12 @@ class AdminResourse extends PureComponent {
     state = {
         article: null,
         sidebarContent: this.props.content,
-        modalOpen: false
+        modalOpen: false,
+        view: 'create'
+    };
+
+    onClickShowEditor = () => {
+        this.setState({view: 'editor'})
     };
 
     onClickCloseModal = (e) => {
@@ -72,7 +77,7 @@ class AdminResourse extends PureComponent {
                         break;
                     }
                     case 'edit': {
-                        await this.saveArticleToDB(params.type)
+                        this.onClickShowEditor();
                     }
                 }
             }
@@ -130,7 +135,10 @@ class AdminResourse extends PureComponent {
                             />
                         </Grid>
                         <Grid item xs={9}>
-                            <AdminMain />
+                            <AdminMain
+                                view={this.state.view}
+                                changeView={this.onClickShowEditor}
+                            />
                         </Grid>
                     </Grid>
                     <Grid item xs={12} className={cn('admin__footer')}>

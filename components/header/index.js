@@ -35,7 +35,7 @@ const Header = () => {
                 {menu.map((item, index) => (
                     <Link href={item.href} key={`menu-${index}`}>
                         <div className={cn('header__link')}>
-                            <Typography variant="h6" color="inherit">
+                            <Typography component="h6" color="inherit">
                                 {item.title}
                             </Typography>
                         </div>

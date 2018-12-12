@@ -39,7 +39,7 @@ class Articles extends PureComponent {
             );
         } else {
             return (
-                <Typography variant="h5">
+                <Typography component="h5">
                     По вашему запросу ничего не найдено!
                 </Typography>
             )

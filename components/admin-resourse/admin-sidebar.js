@@ -74,14 +74,14 @@ class AdminSidebar extends PureComponent {
     render() {
         console.log('content', this.content)
         return (
-            <Fragment>
+            <div className={cn('admin-sidebar')}>
                 {Array.isArray(this.content) && this.content.length && this.content.map((block) => {
                     if(Array.isArray(block[1]) && block[1].length) {
                         return (
                             <Fragment key={block[0]}>
                                 <ExpansionPanel>
                                     <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                                        <Typography variant="h5">
+                                        <Typography component="h4" variant="heading">
                                             {this.getCategoryHeading(block[0])}
                                         </Typography>
                                     </ExpansionPanelSummary>
@@ -119,7 +119,7 @@ class AdminSidebar extends PureComponent {
                         return null;
                     }
                 })}
-            </Fragment>
+            </div>
         )
     }
 }

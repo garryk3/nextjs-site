@@ -15,8 +15,8 @@ const ContentList = (props) => (
     <Layout>
         <Grid container spacing={16}>
             <Grid item xs={8}>
-                <Typography variant="h4" gutterBottom>{props.heading}</Typography>
-                <Typography variant="body1" paragraph>
+                <Typography component="h4" gutterBottom>{props.heading}</Typography>
+                <Typography component="body1" paragraph>
                     {props.description}
                 </Typography>
                 {props.content}

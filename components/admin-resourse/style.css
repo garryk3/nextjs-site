@@ -19,6 +19,7 @@
     }
 
     .admin-sidebar {
+        padding: 24px 12px 0;
 
         &__list {
             margin: 0;
@@ -37,6 +38,14 @@
             &:hover {
                 fill: #c31414;
             }
+        }
+    }
+
+    .admin-main {
+        padding: 24px;
+
+        &__create-btn {
+            margin-right: 12px;
         }
     }
 }

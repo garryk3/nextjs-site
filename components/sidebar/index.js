@@ -29,7 +29,7 @@ class Sidebar extends PureComponent {
         return (
             <Fragment>
                 <div className={cn('sidebar__heading')}>
-                    <Typography variant="h5">
+                    <Typography component="h5">
                         Последние публикации
                     </Typography>
                 </div>
