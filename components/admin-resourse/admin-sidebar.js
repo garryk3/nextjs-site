@@ -99,7 +99,12 @@ class AdminSidebar extends PureComponent {
                                                                 onClick={this.onClickArticle}
                                                             >
                                                                 <DeleteIcon className={cn('admin-sidebar__list-icon')} data-type='delete' />
-                                                                <ListItemText primary={article.name} />
+                                                                <ListItemText
+                                                                    primary={article.name}
+                                                                    primaryTypographyProps={{
+                                                                        variant: "subtitle2"
+                                                                    }}
+                                                                />
                                                             </ListItem>
                                                             <Divider />
                                                         </Fragment>

@@ -45,7 +45,9 @@ class AdminResourse extends PureComponent {
     };
 
     onClickShowEditor = () => {
-        this.setState({view: 'editor'})
+        if(this.state.view !== 'editor') {
+            this.setState({view: 'editor'})
+        }
     };
 
     onClickCloseModal = (e) => {
