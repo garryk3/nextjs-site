@@ -1,4 +1,7 @@
 import * as firebase from "firebase";
+
+import RealtimeDB from './realtime-db';
+
 import config from '../../config/config';
 
 const contentRef = '/content';
@@ -13,50 +16,7 @@ class Firebase {
             this.app = firebase.app();
         }
 
-        this.database = this.app && this.app.database();
-    }
-
-    async readDatabaseRefOnce() {
-        try {
-            let data = await this.database.ref().once('value');
-            let value = data.val();
-
-            if(value) {
-                return value;
-            } else {
-                console.log(`db value is ${value}`)
-            }
-        } catch (e) {
-            console.error(e);
-        }
-    }
-
-    writeContentToDB(type, content) {
-        try {
-            const newPostKey = this.database.ref().child(type).push().key;
-            const updates = {};
-
-            updates[type + newPostKey] = {
-                ...content,
-                key: newPostKey
-            };
-
-            return this.database.ref(type).update(updates);
-        } catch (e) {
-            console.error(e);
-        }
-    }
-
-    removeContentFromDB(type, key) {
-        try {
-            if(type && key) {
-                this.database.ref(type).child(type + key).remove()
-            } else {
-                console.warn(`cant find data, key is ${key}, type is ${type}`)
-            }
-        } catch(e) {
-            console.error(e);
-        }
+        this.database = new RealtimeDB(this.app);
     }
 }
 
