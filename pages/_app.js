@@ -12,7 +12,7 @@ export default class MyApp extends App {
         if (Component.getInitialProps) {
             pageProps = await Component.getInitialProps(ctx)
         }
-        const dbData = await firebase.readDatabaseRefOnce();
+        const dbData = await firebase.database.readDatabaseRefOnce();
         const { articles, galleries, projects } = dbData;
         const initialState = {
             articles: articles && Object.values(articles),

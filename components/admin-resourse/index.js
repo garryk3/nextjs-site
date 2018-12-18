@@ -94,7 +94,7 @@ class AdminResourse extends PureComponent {
                 "email": "Eliseo@gardner.biz",
                 "body": "laudantium enim quasi est quidem magnam voluptate ipsam eos\ntempora quo necessitatibus\ndolor quam autem quasi\nreiciendis et nam sapiente accusantium"
             };
-        return this.context.firebase.writeContentToDB(`/${type}`, test)
+        return this.context.firebase.database.writeContentToDB(`/${type}`, test)
     };
 
     deleteArticle = () => {
@@ -113,7 +113,7 @@ class AdminResourse extends PureComponent {
                 }
             });
 
-            this.context.firebase.removeContentFromDB(`/${type}`, key)
+            this.context.firebase.database.removeContentFromDB(`/${type}`, key)
         }
     };
 

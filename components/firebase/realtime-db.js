@@ -1,7 +1,7 @@
 class RealtimeDB {
     constructor(app) {
         if(!app) {
-            throw new Error('Cant load db');
+            throw new Error(`Cant load db, firebase is ${app}`);
         }
 
         this.db = app.database();
@@ -50,3 +50,5 @@ class RealtimeDB {
         }
     }
 }
+
+export default  RealtimeDB;
