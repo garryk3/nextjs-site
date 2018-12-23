@@ -4,6 +4,9 @@ import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
+import Button from '@material-ui/core/Button';
+
+import AdminEditor from './admin-editor';
 
 import classnames from 'classnames/bind';
 import style from './style.css';
@@ -22,7 +25,7 @@ class AdminMain extends PureComponent {
         if(this.props.view === 'create') {
             return (
                 <Fragment>
-                    <Typography variant="button" gutterTop className={cn('admin-main__create-block')}>
+                    <Typography variant="button" className={cn('admin-main__create-block')}>
                         <span className={cn('admin-main__create-btn')}>Создать статью</span>
                         <Fab size="small" color="secondary" aria-label="Add">
                             <AddIcon onClick={this.props.changeView}/>
@@ -33,13 +36,25 @@ class AdminMain extends PureComponent {
         }
     }
 
-        get renderEditor() {
-            if(this.props.view === 'editor') {
-                return (
-                    <Fragment>editor</Fragment>
-                )
-            }
-         }
+
+    get renderEditor() {
+        if(this.props.view === 'editor') {
+            return (
+                <Fragment>
+                    <div className={cn('admin-main__close-btn')}>
+                        <Button
+                            variant="contained"
+                            href="#contained-buttons"
+                            onClick={this.props.changeView}
+                        >
+                            Закрыть редактор
+                        </Button>
+                    </div>
+                    <AdminEditor />
+                </Fragment>
+            )
+        }
+    }
 
     render() {
         return (

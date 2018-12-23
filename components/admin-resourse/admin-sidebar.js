@@ -72,7 +72,6 @@ class AdminSidebar extends PureComponent {
     };
 
     render() {
-        console.log('content', this.content)
         return (
             <div className={cn('admin-sidebar')}>
                 {Array.isArray(this.content) && this.content.length && this.content.map((block) => {
@@ -81,12 +80,13 @@ class AdminSidebar extends PureComponent {
                             <Fragment key={block[0]}>
                                 <ExpansionPanel>
                                     <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                                        <Typography component="h4" variant="heading">
+                                        <Typography component="h4" variant="h5">
                                             {this.getCategoryHeading(block[0])}
                                         </Typography>
                                     </ExpansionPanelSummary>
                                     <ExpansionPanelDetails>
                                         <List component='ul' className={cn('admin-sidebar__list')}>
+                                            <Divider />
                                             {block[1].map((article) => {
                                                 if(article.key) {
                                                     return (

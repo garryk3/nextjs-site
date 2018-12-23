@@ -16,7 +16,7 @@ const Footer = () => {
             <Toolbar>
                 <Link href="https://github.com/garryk3">
                     <a className={cn('footer__copyright')} target="_blank">
-                        <Typography component="caption" color="inherit">© garryk3 2018</Typography>
+                        © garryk3 2018
                     </a>
                 </Link>
             </Toolbar>

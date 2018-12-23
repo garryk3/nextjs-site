@@ -47,5 +47,20 @@
         &__create-btn {
             margin-right: 12px;
         }
+
+        &__close-btn {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 8px;
+        }
+    }
+
+    .admin-editor {
+        max-width: 1024px;
+        padding: 24px;
+
+        &__form {
+            margin-top: 32px;
+        }
     }
 }
