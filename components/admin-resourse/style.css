@@ -62,5 +62,9 @@
         &__form {
             margin-top: 32px;
         }
+
+        &__save-btn {
+            margin-top: 24px;
+        }
     }
 }
