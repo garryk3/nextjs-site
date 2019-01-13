@@ -57,49 +57,49 @@ class AdminEditor extends PureComponent {
         };
     }
 
-    static contextType = FirebaseContext;
-
-    componentDidMount() {
-        console.log('edited', this.props.editedArticle)
-        if(this.props.editedArticle) {
-            this.setState({
+    static getDerivedStateFromProps(props, state) {
+        if(props.editedArticle) {
+            return {
+                ...state,
                 isValidForm: true,
                 valueTitle: {
-                    value: this.props.editedArticle.title,
+                    value: props.editedArticle.title,
                     valid: true,
                     focused: true
                 },
                 valueDescription: {
-                    value: this.props.editedArticle.description,
+                    value: props.editedArticle.description,
                     valid: true,
                     focused: true
                 },
                 valueHeading: {
-                    value: this.props.editedArticle.heading,
+                    value: props.editedArticle.heading,
                     valid: true,
                     focused: true
                 },
                 valueKeywords: {
-                    value: this.props.editedArticle.keywords,
+                    value: props.editedArticle.keywords,
                     valid: true,
                     focused: true
                 },
                 valueTextarea: {
-                    value: this.props.editedArticle.body,
+                    value: props.editedArticle.body,
                     valid: true,
                     focused: true
                 }
-            })
+            }
         }
+
+        return null;
     }
 
+    static contextType = FirebaseContext;
+    
     saveArticleToDB = (type, content) => {
         return this.context.firebase.database.saveContentToDB(`/${type}`, content)
     };
 
     onClickSaveForm = () => {
-        console.log('save', this.state)
-
         const data = {
             title: this.state.valueTitle.value,
             description: this.state.valueDescription.value,

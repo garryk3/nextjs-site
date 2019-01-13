@@ -84,6 +84,7 @@ class AdminResourse extends PureComponent {
             };
 
             if(sidebarContent) {
+                console.log('sii', sidebarContent)
                 switch(params.action) {
                     case 'delete': {
                         this.setState({ modalOpen: true });
