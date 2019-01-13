@@ -4,8 +4,10 @@ import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import SaveIcon from '@material-ui/icons/Save';
 import Button from '@material-ui/core/Button';
-
 import classnames from 'classnames/bind';
+
+import { FirebaseContext } from '../firebase';
+
 import style from './style.css';
 
 const cn = classnames.bind(style);
@@ -54,8 +56,23 @@ class AdminEditor extends PureComponent {
         };
     }
 
+    static contextType = FirebaseContext;
+
+    saveArticleToDB = (type, content) => {
+        return this.context.firebase.database.writeContentToDB(`/${type}`, content)
+    };
+
     onClickSaveForm = () => {
-        console.log('save')
+        console.log('save', this.state)
+        const data = {
+            title: '',
+            description: '',
+            heading: '',
+            keywords: '',
+            body: ''
+        };
+
+        this.saveArticleToDB('/articles', data)
     };
 
     onChangeField = (name) => {

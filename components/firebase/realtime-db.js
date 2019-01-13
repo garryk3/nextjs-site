@@ -4,6 +4,8 @@ class RealtimeDB {
             throw new Error(`Cant load db, firebase is ${app}`);
         }
 
+        this.contentPath = '/content';
+
         this.db = app.database();
     }
 
@@ -22,9 +24,24 @@ class RealtimeDB {
         }
     }
 
+    async readDBContent() {
+        try {
+            let data = await this.db.ref(this.contentPath).once('value');
+            let value = data.val();
+
+            if(value) {
+                return value;
+            } else {
+                console.log(`db value is ${value}`)
+            }
+        } catch (e) {
+            console.error(e);
+        }
+    }
+
     writeContentToDB(type, content) {
         try {
-            const newPostKey = this.db.ref().child(type).push().key;
+            const newPostKey = this.db.ref(this.contentPath).child(type).push().key;
             const updates = {};
 
             updates[type + newPostKey] = {

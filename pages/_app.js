@@ -13,6 +13,8 @@ export default class MyApp extends App {
             pageProps = await Component.getInitialProps(ctx)
         }
         const dbData = await firebase.database.readDatabaseRefOnce();
+        const content = await firebase.database.removeContentFromDB();
+        console.log('content', content)
         const { articles, galleries, projects } = dbData;
         const initialState = {
             articles: articles && Object.values(articles),

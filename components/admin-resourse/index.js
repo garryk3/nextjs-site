@@ -89,17 +89,6 @@ class AdminResourse extends PureComponent {
         }
     };
 
-    saveArticleToDB = (type, content) => {
-        const test = {
-                "postId": 1,
-                "id": 1,
-                "name": "id labore ex et quam laborum",
-                "email": "Eliseo@gardner.biz",
-                "body": "laudantium enim quasi est quidem magnam voluptate ipsam eos\ntempora quo necessitatibus\ndolor quam autem quasi\nreiciendis et nam sapiente accusantium"
-            };
-        return this.context.firebase.database.writeContentToDB(`/${type}`, test)
-    };
-
     deleteArticle = () => {
         const type = this.editArticleData.type;
         const index = this.editArticleData.index;
