@@ -100,7 +100,7 @@ class AdminSidebar extends PureComponent {
                                                             >
                                                                 <DeleteIcon className={cn('admin-sidebar__list-icon')} data-type='delete' />
                                                                 <ListItemText
-                                                                    primary={article.name}
+                                                                    primary={article.heading}
                                                                     primaryTypographyProps={{
                                                                         variant: "subtitle2"
                                                                     }}

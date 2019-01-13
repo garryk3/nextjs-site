@@ -12,10 +12,9 @@ export default class MyApp extends App {
         if (Component.getInitialProps) {
             pageProps = await Component.getInitialProps(ctx)
         }
-        const dbData = await firebase.database.readDatabaseRefOnce();
-        const content = await firebase.database.removeContentFromDB();
+        const content = await firebase.database.readDBContent();
         console.log('content', content)
-        const { articles, galleries, projects } = dbData;
+        const { articles, galleries, projects } = content;
         const initialState = {
             articles: articles && Object.values(articles),
             galleries: galleries && Object.values(galleries),

@@ -37,8 +37,8 @@ class Sidebar extends PureComponent {
                     <Card
                         key={`latest-${index}`}
                         image='https://via.placeholder.com/728x600'
-                        title={article.name}
-                        heading={article.name}
+                        title={article.title}
+                        heading={article.heading}
                         description={article.body}
                         href='/'
                     />

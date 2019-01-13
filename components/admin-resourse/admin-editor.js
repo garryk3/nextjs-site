@@ -16,7 +16,8 @@ class AdminEditor extends PureComponent {
 
     static propTypes = {
         content: PropTypes.object,
-        articleHandler: PropTypes.func
+        articleHandler: PropTypes.func,
+        editedArticle: PropTypes.object
     };
 
     constructor(props) {
@@ -58,19 +59,58 @@ class AdminEditor extends PureComponent {
 
     static contextType = FirebaseContext;
 
+    componentDidMount() {
+        console.log('edited', this.props.editedArticle)
+        if(this.props.editedArticle) {
+            this.setState({
+                isValidForm: true,
+                valueTitle: {
+                    value: this.props.editedArticle.title,
+                    valid: true,
+                    focused: true
+                },
+                valueDescription: {
+                    value: this.props.editedArticle.description,
+                    valid: true,
+                    focused: true
+                },
+                valueHeading: {
+                    value: this.props.editedArticle.heading,
+                    valid: true,
+                    focused: true
+                },
+                valueKeywords: {
+                    value: this.props.editedArticle.keywords,
+                    valid: true,
+                    focused: true
+                },
+                valueTextarea: {
+                    value: this.props.editedArticle.body,
+                    valid: true,
+                    focused: true
+                }
+            })
+        }
+    }
+
     saveArticleToDB = (type, content) => {
-        return this.context.firebase.database.writeContentToDB(`/${type}`, content)
+        return this.context.firebase.database.saveContentToDB(`/${type}`, content)
     };
 
     onClickSaveForm = () => {
         console.log('save', this.state)
+
         const data = {
-            title: '',
-            description: '',
-            heading: '',
-            keywords: '',
-            body: ''
+            title: this.state.valueTitle.value,
+            description: this.state.valueDescription.value,
+            heading: this.state.valueHeading.value,
+            keywords: this.state.valueKeywords.value,
+            body: this.state.valueTextarea.value
         };
+
+        if(this.props.editedArticle.key) {
+            data.key = this.props.editedArticle.key;
+        }
 
         this.saveArticleToDB('/articles', data)
     };

@@ -18,7 +18,8 @@ class AdminMain extends PureComponent {
     static propTypes = {
         content: PropTypes.object,
         view: PropTypes.string,
-        changeView: PropTypes.func
+        changeView: PropTypes.func,
+        editedArticle: PropTypes.object
     };
 
     get renderCreateArticlePreview() {
@@ -28,13 +29,23 @@ class AdminMain extends PureComponent {
                     <Typography variant="button" className={cn('admin-main__create-block')}>
                         <span className={cn('admin-main__create-btn')}>Создать статью</span>
                         <Fab size="small" color="secondary" aria-label="Add">
-                            <AddIcon onClick={this.props.changeView}/>
+                            <AddIcon onClick={this.onClickChangeView}/>
                         </Fab>
                     </Typography>
                 </Fragment>
             )
         }
     }
+
+    onClickChangeView = () => {
+        let view = 'create';
+
+        if(this.props.view === 'create') {
+            view = 'editor';
+        }
+
+        this.props.changeView(view)
+    };
 
 
     get renderEditor() {
@@ -45,12 +56,12 @@ class AdminMain extends PureComponent {
                         <Button
                             variant="contained"
                             href="#contained-buttons"
-                            onClick={this.props.changeView}
+                            onClick={this.onClickChangeView}
                         >
                             Закрыть редактор
                         </Button>
                     </div>
-                    <AdminEditor />
+                    <AdminEditor editedArticle={this.props.editedArticle} />
                 </Fragment>
             )
         }

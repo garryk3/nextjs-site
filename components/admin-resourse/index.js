@@ -41,17 +41,25 @@ class AdminResourse extends PureComponent {
         article: null,
         sidebarContent: this.props.content,
         modalOpen: false,
-        view: 'create'
+        view: 'create', // @params: editor/create
+        editedArticle: null
     };
 
-    onClickShowEditor = () => {
-        let view = 'editor';
-        if(this.state.view === view) {
-            view = 'create';
+    // onClickShowEditor = () => {
+    //     let view = 'editor';
+    //     if(this.state.view === view) {
+    //         view = 'create';
+    //     }
+    //
+    //     this.setState({ view })
+    // };
+
+    onClickShowEditor = (view) => {
+        if(this.state.view !== view) {
+            this.setState({ view })
         }
-
-        this.setState({ view })
     };
+
 
     onClickCloseModal = (e) => {
         const type = e.currentTarget.dataset.type;
@@ -82,7 +90,8 @@ class AdminResourse extends PureComponent {
                         break;
                     }
                     case 'edit': {
-                        this.onClickShowEditor();
+                        this.onClickShowEditor('editor');
+                        this.setState({ editedArticle: this.state.sidebarContent[params.type][targetIndex] })
                     }
                 }
             }
@@ -132,6 +141,7 @@ class AdminResourse extends PureComponent {
                             <AdminMain
                                 view={this.state.view}
                                 changeView={this.onClickShowEditor}
+                                editedArticle={this.state.editedArticle}
                             />
                         </Grid>
                     </Grid>

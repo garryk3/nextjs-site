@@ -39,17 +39,22 @@ class RealtimeDB {
         }
     }
 
-    writeContentToDB(type, content) {
+    saveContentToDB(type, content) {
         try {
-            const newPostKey = this.db.ref(this.contentPath).child(type).push().key;
             const updates = {};
+            let postKey = content.key;
 
-            updates[type + newPostKey] = {
-                ...content,
-                key: newPostKey
+            if(!content.key) {
+
+                postKey = this.db.ref(this.contentPath).child(type).push().key
+            }
+
+
+            updates[type + postKey] = {
+                ...content
             };
 
-            return this.db.ref(type).update(updates);
+            return this.db.ref(this.contentPath + type).update(updates);
         } catch (e) {
             console.error(e);
         }
